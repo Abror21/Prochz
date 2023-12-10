@@ -1,7 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 import Auth from "../layout/auth/auth";
 import SecureRoute from "./secure-router";
 import User from "../pages/user/user";
+import ContentLayout from "../layout/layout/layout";
+import About from "../pages/about/about";
+import Contact from "../pages/contact/contact";
 
 export const router = createBrowserRouter([
     {
@@ -10,23 +13,27 @@ export const router = createBrowserRouter([
     },
     {
         path: "/user",
-        element: <SecureRoute><User /></SecureRoute>,
+        element: <SecureRoute>
+                    <ContentLayout>
+                        <Outlet />
+                    </ContentLayout>
+                </SecureRoute>,
         children: [
+            {
+                path: "",
+                element: <User />,
+            },
             {
                 path: "home",
                 element: <h1>Home</h1>,
-                // loader: ({ request }) =>
-                //     fetch("/api/dashboard.json", {
-                //         signal: request.signal,
-                //     }),
             },
             {
                 path: "about",
-                element: <h1>About</h1>,
+                element: <About />,
             },
             {
                 path: "contact",
-                element: <h1>Contact</h1>,
+                element: <Contact />,
             },
         ],
     },

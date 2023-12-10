@@ -7,21 +7,20 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
     NotificationOutlined,
-    UploadOutlined,
     UserOutlined,
-    VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Col, Dropdown, Avatar } from 'antd';
 import Cookies from "js-cookie";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 const { Header, Sider, Content } = Layout;
 
 
 const ContentLayout = ({ children }) => {
     const navigate = useNavigate();
-    const [collapsed, setCollapsed] = useState(false);
+    const location = useLocation();
+    const [collapsed, setCollapsed] = useState(true);
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -78,43 +77,60 @@ const ContentLayout = ({ children }) => {
             return rest
         });
 
-    const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-        const key = String(index + 1);
-        if (index < 2) {
-            return {
-                key: `sub${key}`,
-                icon: React.createElement(icon),
-                label: `subnav ${key}`,
-            };
-        } else {
-            return {
-                key: `sub${key}`,
-                icon: React.createElement(icon),
-                label: `subnav ${key}`,
-                children: new Array(4).fill(null).map((_, j) => {
-                    const subKey = index * 4 + j + 1;
-                    return {
-                        key: subKey,
-                        label: `option${subKey}`,
-                    };
-                }),
-            };
+    const menuItems = [
+        {
+            key: `/user/home`,
+            icon: React.createElement(UserOutlined),
+            label: `subnav1`,
+            onClick: () => {
+                navigate('home')
+            },
+        },
+        {
+            key: `/user/about`,
+            icon: React.createElement(LaptopOutlined),
+            label: `subnav2`,
+            onClick: () => {
+                navigate('about')
+            },
+        },
+        {
+            key: `sub3`,
+            icon: React.createElement(NotificationOutlined),
+            label: `subnav3`,
+            children: [
+                {
+                    key: `/user/contact`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav4`,
+                    onClick: () => {
+                        navigate('contact')
+                    },
+                },
+                {
+                    key: `sub5`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav5`,
+                    onClick: () => {
+                        navigate('about')
+                    },
+                },
+            ]
         }
-    });
+    ]
 
     return (
         <Layout>
-            <Sider className='p-4' trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: '#663399' }}>
+            <Sider className='p-4 min-h-screen flex flex-col' trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: '#663399' }}>
                 <div className="demo-logo-vertical" />
                 <Menu
                     className='bg-transparent text-white'
                     mode="inline"
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
+                    selectedKeys={[location.pathname]}
                     style={{
                         height: '100%',
                     }}
-                    items={items2}
+                    items={menuItems}
                 />
             </Sider>
             <Layout>
@@ -130,11 +146,11 @@ const ContentLayout = ({ children }) => {
                     <Button
                         className='border'
                         type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined className='text-white' /> : <MenuFoldOutlined className='text-white' />}
+                        icon={collapsed ? <MenuUnfoldOutlined className='text-white' style={{ fontSize: '20px' }} /> : <MenuFoldOutlined className='text-white' style={{ fontSize: '20px' }} />}
                         onClick={() => setCollapsed(!collapsed)}
                         style={{
                             border: '1px solid',
-                            borderColor: 'transparent transparent transparent transparent white',
+                            borderColor: 'transparent transparent transparent white',
                             borderRadius: 0,
                             fontSize: '16px',
                             width: 64,

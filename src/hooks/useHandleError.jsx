@@ -13,7 +13,7 @@ const currentTime = () => {
   return `${day}.${month}.${year}. ${hour}:${minute}:${second}.${milSecond}`;
 }
 
-export const DEFAULT_ERROR_MESSAGE = 'Something went wrong!'
+export const DEFAULT_ERROR_MESSAGE = 'Something went wrong. Contact the site administrator'
 
 message.config({
   maxCount: 5,
@@ -31,7 +31,7 @@ const modalMessage = (code, errorMessage) => {
       key: 'modalMessage',
       content: (
         <div className='p-2'>
-          <h5 className='font-semibold'>Something went wrong</h5>
+          <h5 className='font-semibold'>Something went wrong with the system. When contacting system support, indicate:</h5>
           <div className='text-left p-3 border my-2'>
             { code &&
             <p><span className='font-semibold'>Kods:</span> {code}</p>
