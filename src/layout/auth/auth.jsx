@@ -1,31 +1,40 @@
+import { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import useHandleError from '../../hooks/useHandleError';
 
 const Auth = () => {
-  const [form] = Form.useForm()
-  if(localStorage.getItem('user-token')){
-    console.log('token: ', localStorage.getItem('user-token'));
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
+
+  const [handleError] = useHandleError();
+
+  if(Cookies.get('user-token')){
+    navigate('/user')
   }
 
   const onFinish = (values) => {
-    console.log('process.env.REACT_APP_BASE_URL', process.env.REACT_APP_BASE_URL);
-    console.log('values: ', values);
+    setLoading(true)
     axios.post(`${process.env.REACT_APP_BASE_URL}/token/`,{
       username: values.username,
       password: values.password
     })
     .then(function (response) {
       if(response.statusText === "OK" && response.data?.access){
-        localStorage.setItem('user-token', response.data.access)
+        Cookies.set('user-token', response.data.access);
+        navigate("/user");
       }
     })
     .catch(function (error) {
-      console.log("error: ", error);
-    });
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+      handleError(error)
+    })
+    .finally(() => {
+      setLoading(false)
+    })
   };
 
   return (
@@ -62,7 +71,7 @@ const Auth = () => {
                   </Form.Item>
 
                   <Form.Item>
-                    <Button type='primary' htmlType="submit">
+                    <Button type='primary' htmlType="submit" loading={loading}>
                       Login
                     </Button>
                   </Form.Item>

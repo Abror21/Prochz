@@ -1,9 +1,10 @@
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
-import Auth from './layout/auth/auth';
+import { router } from './router/router';
 
 function App() {
   return (
-    <Auth />
+    <RouterProvider router={router} />
   );
 }
 
