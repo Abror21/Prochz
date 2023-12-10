@@ -7,3 +7,13 @@
     background-color: #663399 !important;
     color: white !important;
 }
+.ant-layout-sider .ant-layout-sider-children .ant-menu-item:hover{
+    color: #bbb !important;
+}
+.ant-layout-sider .ant-layout-sider-children .ant-menu-item.ant-menu-item-selected{
+    background-color: white;
+    color: #000;
+}
+.ant-layout-sider .ant-layout-sider-children .ant-menu{
+    border-inline-end: unset;
+}

@@ -1,5 +1,5 @@
 import { Button, message } from 'antd';
-import stringConverter from '../utils/string-converter';
+import stringConverter from '../utils/stringConverter';
 
 const currentTime = () => {
   const time = new Date();

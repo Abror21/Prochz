@@ -108,12 +108,14 @@ const Home = () => {
     }, [])
 
     return (
-        <Table
-            columns={columns}
-            dataSource={data}
-            onChange={onChange}
-            loading={loading}
-        />
+        <div className='p-6 bg-white rounded-lg'>
+            <Table
+                columns={columns}
+                dataSource={data}
+                onChange={onChange}
+                loading={loading}
+            />
+        </div>
     )
 };
 export default Home;

@@ -17,7 +17,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 const { Header, Sider, Content } = Layout;
 
 
-const ContentLayout = ({ children }) => {
+const ContentLayout = ({ children, breadcrumb }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [collapsed, setCollapsed] = useState(true);
@@ -116,12 +116,168 @@ const ContentLayout = ({ children }) => {
                     },
                 },
             ]
+        },
+        {
+            key: `/user/home2`,
+            icon: React.createElement(UserOutlined),
+            label: `subnav1`,
+            onClick: () => {
+                navigate('home')
+            },
+        },
+        {
+            key: `/user/about2`,
+            icon: React.createElement(LaptopOutlined),
+            label: `subnav2`,
+            onClick: () => {
+                navigate('about')
+            },
+        },
+        {
+            key: `sub32`,
+            icon: React.createElement(NotificationOutlined),
+            label: `subnav3`,
+            children: [
+                {
+                    key: `/user/contact2`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav4`,
+                    onClick: () => {
+                        navigate('contact')
+                    },
+                },
+                {
+                    key: `sub52`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav5`,
+                    onClick: () => {
+                        navigate('about')
+                    },
+                },
+            ]
+        },
+        {
+            key: `/user/home3`,
+            icon: React.createElement(UserOutlined),
+            label: `subnav1`,
+            onClick: () => {
+                navigate('home')
+            },
+        },
+        {
+            key: `/user/about3`,
+            icon: React.createElement(LaptopOutlined),
+            label: `subnav2`,
+            onClick: () => {
+                navigate('about')
+            },
+        },
+        {
+            key: `sub33`,
+            icon: React.createElement(NotificationOutlined),
+            label: `subnav3`,
+            children: [
+                {
+                    key: `/user/contact3`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav4`,
+                    onClick: () => {
+                        navigate('contact')
+                    },
+                },
+                {
+                    key: `sub53`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav5`,
+                    onClick: () => {
+                        navigate('about')
+                    },
+                },
+            ]
+        },
+        {
+            key: `/user/home34`,
+            icon: React.createElement(UserOutlined),
+            label: `subnav1`,
+            onClick: () => {
+                navigate('home')
+            },
+        },
+        {
+            key: `/user/about34`,
+            icon: React.createElement(LaptopOutlined),
+            label: `subnav2`,
+            onClick: () => {
+                navigate('about')
+            },
+        },
+        {
+            key: `sub334`,
+            icon: React.createElement(NotificationOutlined),
+            label: `subnav3`,
+            children: [
+                {
+                    key: `/user/contact34`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav4`,
+                    onClick: () => {
+                        navigate('contact')
+                    },
+                },
+                {
+                    key: `sub534`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav5`,
+                    onClick: () => {
+                        navigate('about')
+                    },
+                },
+            ]
+        },
+        {
+            key: `/user/home345`,
+            icon: React.createElement(UserOutlined),
+            label: `subnav1`,
+            onClick: () => {
+                navigate('home')
+            },
+        },
+        {
+            key: `/user/about345`,
+            icon: React.createElement(LaptopOutlined),
+            label: `subnav2`,
+            onClick: () => {
+                navigate('about')
+            },
+        },
+        {
+            key: `sub3345`,
+            icon: React.createElement(NotificationOutlined),
+            label: `subnav3`,
+            children: [
+                {
+                    key: `/user/contact345`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav4`,
+                    onClick: () => {
+                        navigate('contact')
+                    },
+                },
+                {
+                    key: `sub5345`,
+                    icon: React.createElement(LaptopOutlined),
+                    label: `subnav5`,
+                    onClick: () => {
+                        navigate('about')
+                    },
+                },
+            ]
         }
     ]
 
     return (
         <Layout>
-            <Sider className='p-4 min-h-screen flex flex-col' trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: '#663399' }}>
+            <Sider className='p-2 min-h-screen overflow-auto flex flex-col' trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: '#663399' }}>
                 <div className="demo-logo-vertical" />
                 <Menu
                     className='bg-transparent text-white'
@@ -177,14 +333,7 @@ const ContentLayout = ({ children }) => {
                         </Dropdown>
                     </Col>
                 </Header>
-                <Content
-                    style={{
-                        margin: '24px',
-                        padding: 24,
-                        minHeight: 280,
-                        background: colorBgContainer,
-                    }}
-                >
+                <Content className='p-6'>
                     {children}
                 </Content>
             </Layout>
