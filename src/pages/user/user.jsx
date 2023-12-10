@@ -1,13 +1,14 @@
-import { Outlet } from "react-router-dom";
-import HeaderTest from "../../layout/header/header";
+import { Outlet } from "react-router-dom"
+import ContentLayout from "../../layout/layout/layout"
 
 const User = () => {
     
 
     return (
         <div className='min-h-screen flex flex-col'>
-            <HeaderTest />
-            <Outlet />
+            <ContentLayout>
+                <Outlet />
+            </ContentLayout>
         </div>
     )
 }

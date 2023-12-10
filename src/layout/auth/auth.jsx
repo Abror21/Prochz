@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'antd';
 import Title from 'antd/es/typography/Title';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import useHandleError from '../../hooks/useHandleError';
 
 const Auth = () => {
@@ -12,10 +12,6 @@ const Auth = () => {
   const navigate = useNavigate();
 
   const [handleError] = useHandleError();
-
-  if(Cookies.get('user-token')){
-    navigate('/user')
-  }
 
   const onFinish = (values) => {
     setLoading(true)
@@ -36,6 +32,10 @@ const Auth = () => {
       setLoading(false)
     })
   };
+
+  if(Cookies.get('user-token')){
+    return <Navigate to="/user" />
+  }
 
   return (
     <div className="w-full bg-gray-200">
