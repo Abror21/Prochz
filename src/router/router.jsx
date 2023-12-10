@@ -5,6 +5,7 @@ import User from "../pages/user/user";
 import ContentLayout from "../layout/layout/layout";
 import About from "../pages/about/about";
 import Contact from "../pages/contact/contact";
+import Home from "../pages/home/home";
 
 export const router = createBrowserRouter([
     {
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "home",
-                element: <h1>Home</h1>,
+                element: <Home />,
             },
             {
                 path: "about",

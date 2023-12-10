@@ -99,7 +99,7 @@ const data = [
 const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
 };
-const User = () => {
+const Home = () => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         setTimeout(() => {
@@ -116,4 +116,4 @@ const User = () => {
         />
     )
 };
-export default User;
+export default Home;
